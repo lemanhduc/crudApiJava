@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.domain.User;
+import com.example.demo.domain.authenticattion;
 import com.example.demo.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +54,22 @@ import java.util.List;
             user.setEmail(params.getEmail());
 
             return userRepository.save(user);
+        }
+
+        @Override
+        public authenticattion getAuthStatus (User userInput) {
+            authenticattion mythStatus = new authenticattion();
+            User user =  userRepository.findByEmail(userInput.getEmail());
+            String mypass = userInput.getPassword();
+
+            if (mypass.equals(user.getPassword())) {
+                mythStatus.setMyUser(user);
+                mythStatus.setAuthenticated(true);
+            } else {
+               mythStatus.setAuthenticated(mythStatus.isAuthenticated());
+            }
+
+            return  mythStatus;
         }
 
         @Override

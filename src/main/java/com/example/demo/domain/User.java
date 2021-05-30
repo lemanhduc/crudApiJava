@@ -1,7 +1,5 @@
 package com.example.demo.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 @Entity
@@ -12,7 +10,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String email;
-    @JsonIgnore
+//    @JsonIgnore
     private String password;
 
     public  User() {
@@ -34,7 +32,7 @@ public class User {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
