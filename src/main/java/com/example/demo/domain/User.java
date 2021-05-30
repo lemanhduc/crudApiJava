@@ -2,17 +2,28 @@ package com.example.demo.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    private String email;
+    @JsonIgnore
+    private String password;
+
+    public  User() {
+
+    }
+
+        public User(int id, String email, String password) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+    }
 
     public String getEmail() {
         return email;
@@ -22,8 +33,6 @@ public class User {
         this.email = email;
     }
 
-    private String email;
-
     public String getPassword() {
         return password;
     }
@@ -32,6 +41,6 @@ public class User {
         this.password = password;
     }
 
-    @JsonIgnore
-    private String password;
+
 }
+
